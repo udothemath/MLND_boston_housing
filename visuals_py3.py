@@ -105,13 +105,13 @@ def ModelComplexity(X, y):
     pl.show()
 
 
-def PredictTrials_trials(X, y, fitter, data, n_trial):
+def PredictTrials(X, y, fitter, data):
     """ Performs trials of fitting and predicting data. """
 
     # Store the predicted prices
     prices = []
 
-    for k in range(n_trial):
+    for k in range(10):
         # Split the data
         X_train, X_test, y_train, y_test = train_test_split(X, y, \
             test_size = 0.2, random_state = k)
@@ -124,10 +124,6 @@ def PredictTrials_trials(X, y, fitter, data, n_trial):
         prices.append(pred)
         
         # Result
-        #print "Trial {}: ${:,.2f}".format(k+1, pred)
-        if (k+1) % 10 == 0:
-            print ("Total Trial {}. You are at Trial {}.".format(n_trial, k+1))
-            
-
+        print ("Trial {}: ${:,.2f}".format(k+1, pred))
     # Display price range
-    return prices
+    print ("\nRange in prices: ${:,.2f}".format(max(prices) - min(prices)))
